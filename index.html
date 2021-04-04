@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #010102;
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+    <title>Galaxy Simulation</title>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script id="v-shader" type="x-shader/x-vertex">
+      attribute vec2 atr_pos;
+      uniform vec2 ul_res;
+      void main() {
+      	vec2 one = atr_pos / ul_res;
+      	vec2 two = one * 2.0;
+      	gl_Position = vec4(two * 2.0 - 1.0, 0, 1);
+      	gl_PointSize = 1.0;
+      }
+    </script>
+    <script id="f-shader" type="x-shader/x-fragment">
+      precision mediump float;
+      uniform vec4 ul_color;
+      void main() {
+         gl_FragColor = ul_color;
+      }
+    </script>
+    <script src="stars.js"></script>
+  </body>
+</html>
